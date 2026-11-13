@@ -87,8 +87,6 @@ command = "snowflake.cortex-code.resume"
 description = "resume Cortex Code session"
 ```
 
-These keybindings are independent of other plugin configuration, including `[[plugins.herdr-app-tab.tabs]]`; retain those sections when updating your local Herdr configuration.
-
 ## Verify
 
 ```bash
