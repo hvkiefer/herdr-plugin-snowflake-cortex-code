@@ -1,0 +1,79 @@
+id = "snowflake.cortex-code"
+name = "Cortex Code"
+version = "0.1.0"
+min_herdr_version = "0.7.0"
+description = "Enable Snowflake Cortex Code (cortex) agent state tracking, session restore, and launch workflows in Herdr"
+platforms = ["linux", "macos", "windows"]
+
+[[startup]]
+command = ["node", "scripts/manage-hooks.mjs", "install"]
+
+[[actions]]
+id = "split-right"
+title = "Cortex Code: Split right"
+description = "Split the current pane to the right and launch Cortex Code"
+contexts = ["workspace", "tab", "pane"]
+command = ["node", "scripts/actions.mjs", "split-right"]
+
+[[actions]]
+id = "split-down"
+title = "Cortex Code: Split down"
+description = "Split the current pane downward and launch Cortex Code"
+contexts = ["workspace", "tab", "pane"]
+command = ["node", "scripts/actions.mjs", "split-down"]
+
+[[actions]]
+id = "new-tab"
+title = "Cortex Code: New tab"
+description = "Open a new tab in the current workspace and launch Cortex Code"
+contexts = ["global", "workspace", "tab", "pane"]
+command = ["node", "scripts/actions.mjs", "new-tab"]
+
+[[actions]]
+id = "open-overlay"
+title = "Cortex Code: Open overlay"
+description = "Open Cortex Code in a zoomed overlay pane"
+contexts = ["global", "workspace", "tab", "pane"]
+command = ["node", "scripts/actions.mjs", "open-overlay"]
+
+[[actions]]
+id = "resume"
+title = "Cortex Code: Resume session"
+description = "Open Cortex Code session picker (--resume) in an overlay pane"
+contexts = ["global", "workspace", "tab", "pane"]
+command = ["node", "scripts/actions.mjs", "resume"]
+
+[[actions]]
+id = "send-selection"
+title = "Cortex Code: Send selection"
+description = "Send selected terminal text to a running Cortex Code pane in the current workspace, or open a split with it"
+contexts = ["selection"]
+command = ["node", "scripts/actions.mjs", "send-selection"]
+
+[[actions]]
+id = "install-hooks"
+title = "Cortex Code: Install Herdr hooks"
+description = "Install Cortex Code lifecycle hooks into ~/.snowflake/cortex/hooks.json"
+contexts = ["global", "workspace", "tab", "pane"]
+command = ["node", "scripts/manage-hooks.mjs", "install"]
+
+[[actions]]
+id = "uninstall-hooks"
+title = "Cortex Code: Uninstall Herdr hooks"
+description = "Remove Herdr lifecycle hooks from ~/.snowflake/cortex/hooks.json"
+contexts = ["global", "workspace", "tab", "pane"]
+command = ["node", "scripts/manage-hooks.mjs", "uninstall"]
+
+[[panes]]
+id = "cortex"
+title = "Cortex Code"
+description = "Interactive Snowflake Cortex Code CLI session"
+placement = "overlay"
+command = ["node", "scripts/pane-entry.mjs", "chat"]
+
+[[panes]]
+id = "resume"
+title = "Cortex Code Resume"
+description = "Resume a previous Snowflake Cortex Code session"
+placement = "overlay"
+command = ["node", "scripts/pane-entry.mjs", "resume"]

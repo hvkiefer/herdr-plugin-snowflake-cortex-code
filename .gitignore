@@ -1,0 +1,4 @@
+# Local development and test state
+node_modules/
+coverage/
+*.log
